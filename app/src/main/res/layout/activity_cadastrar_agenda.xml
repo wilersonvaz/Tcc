@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/blue" />
+
+        <LinearLayout
+            android:layout_marginTop="-1dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:id="@+id/frameTopo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:gravity="center_horizontal">
+
+                </FrameLayout>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_one_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/value50"
+                    android:elevation="10dp"
+                    app:cardBackgroundColor="#fcfcfc"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/value25">
+
+                        <TextView
+                            android:id="@+id/tituloAgenda"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/value10"
+                            android:text="Cadastrar Pet"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/value18"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@color/blue" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/value5"
+                            android:layout_marginTop="@dimen/value5"
+                            android:layout_marginEnd="@dimen/value5"
+                            android:layout_marginBottom="@dimen/value5"
+                            android:padding="@dimen/value5"
+                            android:text="Compromisso"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/value15"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/edtTituloAgenda"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="@dimen/value5"
+                            android:layout_marginRight="@dimen/value5"
+                            android:ems="10"
+                            android:imeOptions="actionNext"
+                            android:nextFocusDown="@+id/edtObservaçao"
+                            android:textSize="@dimen/value14" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/value5"
+                            android:padding="@dimen/value5"
+                            android:text="Descrição"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/value15"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/edtObservaçao"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginLeft="@dimen/value5"
+                            android:layout_marginRight="@dimen/value5"
+                            android:ems="10"
+                            android:imeOptions="actionNext"
+                            android:nextFocusDown="@+id/edtIntervalo"
+                            android:textSize="@dimen/value14" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/value5"
+                            android:padding="@dimen/value5"
+                            android:text="Repetido em:"
+                            android:textAlignment="textStart"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:id="@+id/edtIntervalo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/value5"
+                            android:layout_marginBottom="@dimen/value5"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/edtUnica"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/value5"
+                                android:text="Só uma vez"
+                                android:onClick="onClick"
+                                android:clickable="true"
+                                tools:ignore="OnClick"/>
+
+                            <RadioButton
+                                android:id="@+id/edtHoras"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/value5"
+                                android:text="Horas"
+                                android:onClick="onClick"
+                                android:clickable="true"
+                                tools:ignore="OnClick"/>
+
+                            <RadioButton
+                                android:id="@+id/edtDias"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/value5"
+                                android:text="Dias"
+                                android:onClick="onClick"
+                                android:clickable="true"
+                                tools:ignore="OnClick"/>
+
+                            <RadioButton
+                                android:id="@+id/edtSemanas"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semanas"
+                                android:onClick="onClick"
+                                android:clickable="true"
+                                tools:ignore="OnClick"/>
+
+                        </RadioGroup>
+
+                        <!--                        <Spinner-->
+                        <!--                            android:id="@+id/edtIntervalo"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:layout_margin="@dimen/value5"-->
+                        <!--                            android:background="@color/white"-->
+                        <!--                            android:scrollbarSize="@dimen/value14"-->
+                        <!--                            android:textColor="@color/blue" />-->
+
+                        <TextView
+                            android:id="@+id/txtQtdeAgenda"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/value5"
+                            android:padding="@dimen/value5"
+                            android:text="Será repetido por quantos dias"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/value15"
+                            android:textStyle="bold"
+                            android:visibility="gone"/>
+
+                        <EditText
+                            android:id="@+id/edtQtdeAgenda"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="@dimen/value5"
+                            android:layout_marginRight="@dimen/value5"
+                            android:ems="10"
+                            android:imeOptions="actionNext"
+                            android:nextFocusDown="@+id/edtDataAgenda"
+                            android:textSize="@dimen/value14"
+                            android:visibility="gone"/>
+
+
+                        <TextView
+                            android:id="@+id/txtDifIntervalo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/value5"
+                            android:padding="@dimen/value5"
+                            android:text="Diferença entre as repetições"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/value15"
+                            android:textStyle="bold"
+                            android:visibility="gone"/>
+
+                        <EditText
+                            android:id="@+id/edtDifIntervalo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="@dimen/value5"
+                            android:layout_marginRight="@dimen/value5"
+                            android:ems="10"
+                            android:imeOptions="actionNext"
+                            android:nextFocusDown="@+id/edtDataAgenda"
+                            android:textSize="@dimen/value14"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/value5"
+                            android:padding="@dimen/value5"
+                            android:text="Data Inicio"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/value15"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/edtDataAgenda"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="@dimen/value5"
+                            android:layout_marginRight="@dimen/value5"
+                            android:ems="10"
+                            android:imeOptions="actionNext"
+                            android:nextFocusDown="@id/edtHorario"
+                            android:textSize="@dimen/value14" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/value5"
+                            android:padding="@dimen/value5"
+                            android:text="Horario"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/value15"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/edtHorario"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="@dimen/value5"
+                            android:layout_marginRight="@dimen/value5"
+                            android:ems="10"
+                            android:imeOptions="actionNext"
+                            android:nextFocusDown="@id/btnCadastrar"
+                            android:textSize="@dimen/value14" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnCadastrar"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/cv_one_login"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="-25dp"
+                android:layout_marginBottom="@dimen/value15"
+                android:elevation="15dp"
+                android:background="@drawable/buttonstyle"
+                android:text="Cadastrar"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetalhesAnimal">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentLeft="true">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/txtFaixaDecorativa"-->
+<!--                android:layout_width="10px"-->
+<!--                android:layout_height="125dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:background="@color/blue" />-->
+
+<!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal|center_vertical"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:background="@color/background"-->
+<!--                android:orientation="horizontal">-->
+<!--            </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imagemPet"
+                    android:layout_width="@dimen/value50"
+                    android:layout_height="@dimen/value50"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/profile_circular_border_imageview"
+                    android:padding="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pet"
+                    tools:ignore="MissingClass" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/value10">
+
+                    <TextView
+                        android:id="@+id/txtNomePet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/value15"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="@dimen/value5"
+                        android:background="@color/background"/>
+
+                    <TextView
+                        android:id="@+id/txtDataNascimento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/value5"
+                        android:text="Palavra"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/value10" />
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="1px"-->
+<!--                        android:layout_marginLeft="5dp"-->
+<!--                        android:layout_marginTop="@dimen/value5"-->
+<!--                        android:layout_marginRight="5dp"-->
+<!--                        android:background="@color/black" />-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="horizontal">-->
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Agenda"/>-->
+<!--                    </LinearLayout>-->
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/background" />
+
+</RelativeLayout>

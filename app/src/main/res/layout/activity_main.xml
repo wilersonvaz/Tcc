@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/value130"
+            android:layout_marginTop="@dimen/value20"
+            android:background="@color/blue">
+
+            <FrameLayout
+                android:id="@+id/frameTopo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal">
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/value10"
+            android:layout_marginTop="@dimen/value80"
+            android:orientation="horizontal"
+            android:textAlignment="textStart">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_profile_photo"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/value10"
+                android:background="@drawable/profile_circular_border_imageview"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/pet"
+                tools:ignore="MissingClass" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/value5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/idPetName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="sans-serif"
+                    android:text="Seja bem-vindo"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/value25"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/idPetShortBio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_profile_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/value10"
+                    android:text="Prazer em tê-los conosco"
+                    android:textColor="#fff"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_layout"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/idBanhoTosa"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="Banho/Tosa"
+                android:drawableLeft="@drawable/shower"
+                android:drawablePadding="2dp"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:id="@+id/idMedicacao"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="Medicaçao"
+                android:drawableLeft="@drawable/medication"
+                android:drawablePadding="2dp"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:id="@+id/idVacinacao"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="Vacinaçao"
+                android:drawableLeft="@drawable/vacina"
+                android:drawablePadding="2dp"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="Anotaçoes"
+                android:drawableLeft="@drawable/notes"
+                android:drawablePadding="2dp"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="Consultas"
+                android:drawableLeft="@drawable/consulta"
+                android:drawablePadding="2dp"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="Exames"
+                android:drawableLeft="@drawable/exame"
+                android:drawablePadding="2dp"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="Controle parasitario"
+                android:drawableLeft="@drawable/virus"
+                android:drawablePadding="2dp"
+                android:onClick="onClick"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:text="Cirurgias"
+                android:drawableLeft="@drawable/cirurgia"
+                android:drawablePadding="2dp"
+                android:onClick="onClick"/>
+
+<!--            <TextView-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:background="#fff"-->
+<!--                android:clickable="true"-->
+<!--                android:elevation="4dp"-->
+<!--                android:padding="20dp"-->
+<!--                android:text="Editar dados do pet"-->
+<!--                android:drawableLeft="@drawable/editar"-->
+<!--                android:drawablePadding="2dp"/>-->
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
