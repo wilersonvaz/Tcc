@@ -42,6 +42,8 @@ import com.example.tcc.ModelDAO.UsuarioDAO;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class CadastrarAnimal extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText edtNome, edtDataNascimento, edtDataAdocao, edtPeso, edtCor, edtNotas;
@@ -52,11 +54,19 @@ public class CadastrarAnimal extends AppCompatActivity implements AdapterView.On
     Button btnCadastrar;
     ImageView edtImagemPet;
     private Bitmap bitmap;
-
-    String sexo = "Masculino";
-    String especie = "Canino";
     String arquivo = "";
-    String raca = "Vira-latas";
+
+    public static int idAnimal = -1;
+
+    String imagem;
+    String nome;
+    String especie;
+    String dataNascimento;
+    String dataAdocao;
+    String peso;
+    String sexo;
+    String notas;
+    String raca;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,10 +118,34 @@ public class CadastrarAnimal extends AppCompatActivity implements AdapterView.On
 
         edtRaca.setOnItemSelectedListener(this);
 
-        edtDataNascimento.setText("01/01/2016");
-        edtDataAdocao.setText("02/01/2016");
-        edtPeso.setText("6");
-        edtCor.setText("Branca");
+
+        if (getIntent() != null && getIntent().hasExtra("idAnimal")) {
+            Bundle bundle = getIntent().getExtras();
+            idAnimal = bundle.getInt("idAnimal");
+//            arquivo = bundle.getString("imagem");
+//
+//            bitmap = BitmapFactory.decodeFile(arquivo);
+//
+//            edtImagemPet.setImageBitmap(bitmap);
+
+            edtNome.setText(bundle.getString("nome"));
+
+            SimpleDateFormat in= new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");
+
+            try {
+                edtDataNascimento.setText(out.format(in.parse(bundle.getString("dataNascimento"))));
+                edtDataAdocao.setText(out.format(in.parse(bundle.getString("dataAdocao"))));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            edtPeso.setText(bundle.getString("peso"));
+            edtCor.setText(bundle.getString("cor"));
+            edtNotas.setText(bundle.getString("notas"));
+
+            btnCadastrar.setText("Alterar");
+        }
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override

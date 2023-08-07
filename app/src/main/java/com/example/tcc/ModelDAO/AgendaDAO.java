@@ -1,6 +1,7 @@
 package com.example.tcc.ModelDAO;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -123,7 +124,8 @@ public class AgendaDAO extends WebService {
 
                                     int resp = Integer.parseInt( jsonResponse.getString("response") ) ;
                                     if(resp > 0){
-                                        Toast.makeText(ctx, "Compromisso concluido com sucesso!", Toast.LENGTH_LONG).show();
+
+//                                        Toast.makeText(ctx, "Compromisso concluido com sucesso!", Toast.LENGTH_LONG).show();
                                     }
 
                                 }

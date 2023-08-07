@@ -31,8 +31,8 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.btnLogin);
 
-        edtEmail.setText("wilersonalves@gmail.com");
-        edtSenha.setText("123");
+//        edtEmail.setText("wilersonalves@gmail.com");
+//        edtSenha.setText("123");
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

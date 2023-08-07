@@ -96,9 +96,11 @@ public class menu_topo extends Fragment {
 
                 PopupMenu menu = new PopupMenu(getContext(), view);
 
-                for(int i = 0; i < MainActivity.pets.size(); i++){
+                if(!MainActivity.pets.isEmpty()){
+                    for(int i = 0; i < MainActivity.pets.size(); i++){
 //                    menu.getMenu().removeItem(i);
-                    menu.getMenu().add(1, MainActivity.pets.get(i).getIdAnimal(), i, MainActivity.pets.get(i).getNome().toString());
+                        menu.getMenu().add(1, MainActivity.pets.get(i).getIdAnimal(), i, MainActivity.pets.get(i).getNome().toString());
+                    }
                 }
 
                 menu.show();

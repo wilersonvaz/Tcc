@@ -31,8 +31,7 @@ public class ListaPets extends AppCompatActivity {
               MainActivity.idUsuario
         );
 
-        System.out.println("MainActivity.pets: "+String.valueOf(MainActivity.pets.size()));
-        AdapterListaPets adapterListaPets = new AdapterListaPets(MainActivity.pets);
+        AdapterListaPets adapterListaPets = new AdapterListaPets(MainActivity.pets, getApplicationContext());
 
         idListaPets.setAdapter(adapterListaPets);
         idListaPets.setLayoutManager(new LinearLayoutManager(this));

@@ -51,8 +51,6 @@ public class ListaAgenda extends AppCompatActivity {
                 idTxtPesquisaAgenda.setText(MainActivity.pesquisa);
             }
 
-//            ListaAgenda.listaAgenda.clear();
-
             AdapterListaAgenda adapterListaAgenda = new AdapterListaAgenda(ListaAgenda.listaAgenda, getApplicationContext());
 
             idListaAgenda.setAdapter(adapterListaAgenda);

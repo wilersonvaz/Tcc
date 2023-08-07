@@ -73,15 +73,18 @@ public class UsuarioDAO extends WebService {
 
                                 idUsuario = Integer.parseInt(jsonObject.getString("idUsuario"));
                                 nomeUsuario = jsonObject.getString("nomeUsuario");
-                                if(!jsonObject.getString("idAnimal").equals("null")){idAnimal = Integer.parseInt( jsonObject.getString("idAnimal"));}
-                                nomePet = jsonObject.getString("nomePet");
-                                imagemPet = jsonObject.getString("imagem");
-                                resumo = jsonObject.getString("resumo");
-                                dataNascimentoPet = jsonObject.getString("dataNascimento");
+                                if(!jsonObject.getString("idAnimal").equals("null")){idAnimal = Integer.parseInt( jsonObject.getString("idAnimal"));
+                                    nomePet = jsonObject.getString("nomePet");
+                                    imagemPet = jsonObject.getString("imagem");
+                                    resumo = jsonObject.getString("resumo");
+                                    dataNascimentoPet = jsonObject.getString("dataNascimento");
 
-                                //Importante preencher essa lista, ela quem vai carregar os customers no menu
+                                    //Importante preencher essa lista, ela quem vai carregar os animais no menu
 
-                                MainActivity.pets.add(new Animal(idAnimal, nomePet, imagemPet, sexo, dataNascimentoPet, resumo));
+                                    MainActivity.pets.add(new Animal(idAnimal, nomePet, imagemPet, sexo, dataNascimentoPet, resumo));
+                                }else{
+                                    MainActivity.pets.add((new Animal("Nenhum animal cadastrado!")));
+                                }
                             }
 
                             MainActivity.idUsuario = idUsuario;
@@ -205,7 +208,6 @@ public class UsuarioDAO extends WebService {
             @Override
             protected Map<String, String> getParams()
             {
-                System.out.println("Passando:"+acao+" - "+String.valueOf(usuario.getIdUsuario())+" "+String.valueOf(usuario.getAnimal().getIdAnimal()));
                 Map<String, String>  params = new HashMap<String, String>();
                 try {
                     params.put("acao", acao);
@@ -588,7 +590,7 @@ public class UsuarioDAO extends WebService {
             @Override
             protected Map<String, String> getParams()
             {
-                System.out.println("Passando "+acao+" na listaAgenda");
+
                 Map<String, String>  params = new HashMap<String, String>();
                 try {
                     params.put("acao", acao);

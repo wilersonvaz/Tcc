@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,6 +23,7 @@ import com.example.tcc.Model.WebService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,6 +65,14 @@ public class AnimalDAO extends WebService {
                                         Animal animal = new Animal(idAnimal);
                                         Usuario usu = new Usuario(MainActivity.idUsuario, animal);
                                         UsuarioDAO usuarioDao = new UsuarioDAO("usuario");
+                                        for( int i = 0; i < MainActivity.pets.size(); i++){
+                                            System.out.println(MainActivity.pets.get(i).getNome());
+                                            if(MainActivity.pets.get(i).getNome().equals("Nenhum animal cadastrado!")){
+                                                MainActivity.pets.remove(i);
+                                            }
+                                        }
+
+
                                         MainActivity.idAnimal = idAnimal;
                                         MainActivity.pets.add(new Animal(idAnimal, usuario.getAnimal().getNome(), usuario.getAnimal().getImagemPet(), usuario.getAnimal().getResumo()));
 //                                        usuarioDao.loadMainInfos(ctx, "loadPetInfo", usu);
@@ -71,11 +81,11 @@ public class AnimalDAO extends WebService {
                                         MainActivity.imagemPet = usuario.getAnimal().getImagemPet();
                                         MainActivity.resumo = usuario.getAnimal().getResumo();
 
-                                        Toast.makeText(ctx, " cadastrado com sucesso", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(ctx, " Cadastrado com sucesso", Toast.LENGTH_LONG).show();
 
-                                        Intent intent = new Intent(ctx, MainActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        ctx.startActivity(intent);
+//                                        Intent intent = new Intent(ctx, MainActivity.class);
+//                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                        ctx.startActivity(intent);
                                     }else{
                                         Toast.makeText(ctx, "Ocorreu um erro ao cadastrar o pet!", Toast.LENGTH_LONG).show();
                                     }
@@ -114,6 +124,111 @@ public class AnimalDAO extends WebService {
                         params.put("imagem", usuario.getAnimal().getImagemPet());
                         params.put("raca", usuario.getAnimal().getRaca());
 
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return params;
+                }
+            };
+            queue.add(postRequest);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public void CarregaUpdate(Context ctx, View.OnClickListener onClickListener, String acao, Animal animal){
+        try{
+            RequestQueue queue = Volley.newRequestQueue(ctx);
+
+            String url = this.urlWebService();
+
+            StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>()
+                    {
+                        @Override
+                        public void onResponse(String response) {
+                            try{
+                                if(!response.equals("")){
+//                                    JSONObject jsonResponse = new JSONObject(response);
+                                    JSONArray jsonArray = new JSONArray(response);
+
+                                    int idAnimal = -1;
+                                    String imagem = "";
+                                    String nome = "";
+                                    String especie = "";
+                                    String dataNascimento = "";
+                                    String dataAdocao = "";
+                                    String peso = "";
+                                    String sexo = "";
+                                    String notas = "";
+                                    String raca = "";
+
+
+                                    if(jsonArray.length() > 0){
+                                        for(int i =0; i < jsonArray.length(); i++) {
+                                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                            idAnimal = Integer.parseInt(jsonObject.getString("idAnimal"));
+
+                                            imagem = jsonObject.getString("imagem");
+                                            nome = jsonObject.getString("nome");
+                                            especie = jsonObject.getString("especie");
+                                            dataNascimento = jsonObject.getString("dataNascimento");
+                                            dataAdocao = jsonObject.getString("dataAdocao");
+                                            peso = jsonObject.getString("peso");
+                                            sexo = jsonObject.getString("sexo");
+                                            notas = jsonObject.getString("notas");
+                                            raca = jsonObject.getString("raca");
+                                        }
+
+                                        Bundle bundle = new Bundle();
+                                        bundle.putInt("idAnimal", idAnimal);
+                                        bundle.putString("imagem", imagem);
+                                        bundle.putString("nome", nome);
+                                        bundle.putString("especie", especie);
+                                        bundle.putString("dataNascimento", dataNascimento);
+                                        bundle.putString("dataAdocao", dataAdocao);
+                                        bundle.putString("peso", peso);
+                                        bundle.putString("sexo", sexo);
+                                        bundle.putString("notas", notas);
+                                        bundle.putString("raca", raca);
+
+
+                                        CadastrarAnimal.idAnimal = idAnimal;
+                                        Intent intent = new Intent(ctx, CadastrarAnimal.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.putExtras(bundle);
+
+                                        ctx.startActivity(intent);
+
+                                    }else{
+                                        Toast.makeText(ctx, "Nenhum animal encontrado com esse id!", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    },new Response.ErrorListener()
+            {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    // error
+                    System.out.println("Error.Response"+ String.valueOf(error));
+                    Log.d("Error.Response", String.valueOf(error));
+                }
+            }
+            ){
+                @Override
+                protected Map<String, String> getParams()
+                {
+                    Map<String, String>  params = new HashMap<String, String>();
+                    try {
+                        params.put("acao", acao);
+                        params.put("idAnimal", String.valueOf(animal.getIdAnimal()));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

@@ -1,5 +1,6 @@
 package com.example.tcc.Adapter;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.StrictMode;
@@ -7,13 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tcc.Model.Animal;
 import com.example.tcc.Model.Usuario;
+import com.example.tcc.ModelDAO.AnimalDAO;
 import com.example.tcc.R;
 
 import java.io.IOException;
@@ -27,7 +31,8 @@ import java.util.Date;
 
 public class AdapterListaPets extends RecyclerView.Adapter<AdapterListaPets.ListaPets> {
     ArrayList<Animal> listaPets;
-    public AdapterListaPets(ArrayList<Animal> listaPets) {this.listaPets = listaPets; }
+    Context ctx;
+    public AdapterListaPets(ArrayList<Animal> listaPets, Context ctx) {this.listaPets = listaPets; this.ctx = ctx;}
 
     @NonNull
     @Override
@@ -53,6 +58,15 @@ public class AdapterListaPets extends RecyclerView.Adapter<AdapterListaPets.List
             holder.imagemPet.setImageBitmap(bitmap);
 
             holder.dataNascimento.setText(listaPets.get(position).getDataNascimento());
+
+            holder.nomePet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Animal animal = new Animal(listaPets.get(position).getIdAnimal());
+                    AnimalDAO animalDAO = new AnimalDAO("animal");
+                    animalDAO.CarregaUpdate(ctx,this, "carregaUpdate", animal);
+                }
+            });
 
 //            DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
 //            DateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
@@ -81,6 +95,7 @@ public class AdapterListaPets extends RecyclerView.Adapter<AdapterListaPets.List
         TextView nomePet;
         ImageView imagemPet;
         TextView dataNascimento;
+
         public ListaPets(@NonNull View itemView) {
             super(itemView);
             nomePet = itemView.findViewById(R.id.txtNomePet);

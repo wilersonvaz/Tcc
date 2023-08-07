@@ -2,8 +2,12 @@ package com.example.tcc.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tcc.ListaAgenda;
@@ -56,6 +62,8 @@ public class AdapterListaAgenda extends RecyclerView.Adapter<AdapterListaAgenda.
         holder.txtTitulo.setText(listaAgenda.get(position).getTitulo());
         holder.txtObservacao.setText(listaAgenda.get(position).getObservacao());
 
+        exibirNotificacaoPush(listaAgenda.get(position).getTitulo());
+
         SimpleDateFormat in= new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -87,7 +95,6 @@ public class AdapterListaAgenda extends RecyclerView.Adapter<AdapterListaAgenda.
         holder.concluirCompromisso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(MainActivity.pesquisa.equals("")){
                     Agenda agenda = new Agenda(listaAgenda.get(position).getIdAgenda(), listaAgenda.get(position).getServico());
                     AgendaDAO agendaDAO = new AgendaDAO("agenda");
@@ -104,7 +111,6 @@ public class AdapterListaAgenda extends RecyclerView.Adapter<AdapterListaAgenda.
                     UsuarioDAO usuarioDao = new UsuarioDAO("usuario");
                     usuarioDao.listaAgenda(ctx, "listaAgenda", usuario);
                 }else{
-
                     Agenda agenda = new Agenda(listaAgenda.get(position).getIdAgenda(), listaAgenda.get(position).getServico(), MainActivity.pesquisa);
                     AgendaDAO agendaDAO = new AgendaDAO("agenda");
                     agendaDAO.concluirCompromisso(view.getContext(), "concluirCompromisso", agenda);
@@ -118,7 +124,7 @@ public class AdapterListaAgenda extends RecyclerView.Adapter<AdapterListaAgenda.
                     );
 
                     UsuarioDAO usuarioDao = new UsuarioDAO("usuario");
-                    usuarioDao.pesquisaAgenda(ctx, "listaAgenda", usuario);
+                    usuarioDao.pesquisaAgenda(ctx, "pesquisaAgenda", usuario);
                 }
 
             }
@@ -181,4 +187,32 @@ public class AdapterListaAgenda extends RecyclerView.Adapter<AdapterListaAgenda.
             excluirCompromisso = itemView.findViewById(R.id.excluirCompromisso);
         }
     }
+
+
+    // Método para exibir a notificação push
+    private void exibirNotificacaoPush(String mensagem) {
+        String canalId = "agenda_pet";
+        String canalNome = "Agenda Pet";
+        String canalDescricao = "Agenda de compromissos para seu pet";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel canal = new NotificationChannel(canalId, canalNome, NotificationManager.IMPORTANCE_DEFAULT);
+            canal.setDescription(canalDescricao);
+            canal.enableLights(true);
+            canal.setLightColor(Color.RED);
+            NotificationManager notificationManager = ctx.getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(canal);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(ctx, canalId)
+                .setSmallIcon(R.drawable.editar)
+                .setContentTitle("Título da Notificação")
+                .setContentText(mensagem)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(ctx);
+        notificationManager.notify(0, builder.build());
+    }
+
 }
